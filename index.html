@@ -18,6 +18,8 @@
   <script>
     // Mamy liste zakupów. Oblicz za pomocą pętli, koszt zakupów. Wrzuć wynik w konsolę
 
+    let filteredArray = [];
+
     const shopping = [
       {
         id: 1,
@@ -38,6 +40,8 @@
         price: 19.99
       }
     ]
+
+    newFilteredArray = [...shopping];
 
     const calculateSum = (products) => {
       // Zadanie nr 1
@@ -68,9 +72,19 @@
     list.addEventListener('click', event => {
       if(event.target.tagName === 'INPUT') {
         event.target.parentElement.remove();
+        
+        const productNameToFilterOut = event.target.parentElement.innerText.trim();
+        
+        filteredArray = shopping.filter(product => {
+          return product.name != productNameToFilterOut;
+        })
 
-        const productNameToFilterOut = event.target.parentElement.innerText;
-        console.log(productNameToFilterOut);
+        let indexToFilterOut = shopping.findIndex((product) => product.name == productNameToFilterOut);
+        shopping.splice(indexToFilterOut,1);
+
+        shopping.map(val => console.log(val))
+
+        shoppingCostElement.innerText = `${calculateSum(shopping)} zł`;
 
         // 1. Odfilrowac z shopping
         // 2. wywolac funkcje calculateSum z nowa lista produktow
