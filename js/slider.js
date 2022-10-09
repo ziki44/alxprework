@@ -37,7 +37,7 @@ const slides = [
   
   btnNext.addEventListener('click', (event) => {
     event.preventDefault();
-    if (activeSlide == 2) {
+    if (activeSlide == slides.length-1) {
       activeSlide = 0;
     } else {
       activeSlide++;
@@ -49,7 +49,7 @@ const slides = [
   btnPrev.addEventListener('click', (event) => {
     event.preventDefault();
     if (activeSlide == 0) {
-      activeSlide = 2;
+      activeSlide = slides.length-1;
     } else {
       activeSlide--;
     }
@@ -57,7 +57,7 @@ const slides = [
     generateSlide();
   })
   
-
+  generateSlide();
   
   // 1. Zrob obsluge powrotu do poprzedniegu zdjecia (prev)
   // 2. Zrob obsluge, ze jak jestemy na ostastnim slidzie i klikniemy next, to wracam do pierwszego
